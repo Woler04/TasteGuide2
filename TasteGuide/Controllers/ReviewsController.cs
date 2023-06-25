@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TasteGuide.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TasteGuide.Controllers
 {
+    [Authorize]
     public class ReviewsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
         public ReviewsController(ApplicationDbContext context)
         {
             _context = context;
@@ -21,6 +24,7 @@ namespace TasteGuide.Controllers
         // GET: Reviews
         public async Task<IActionResult> Index()
         {
+
             var applicationDbContext = _context.Reviews.Include(r => r.Author).Include(r => r.Restaurant);
             return View(await applicationDbContext.ToListAsync());
         }
