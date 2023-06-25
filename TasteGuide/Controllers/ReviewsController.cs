@@ -50,6 +50,7 @@ namespace TasteGuide.Controllers
         }
 
         // GET: Reviews/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["AppUserId"] = new SelectList(_context.Set<AppUser>(), "Id", "Id");
@@ -62,6 +63,7 @@ namespace TasteGuide.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Content,AppUserId,RestaurantId")] Review review)
         {
             if (ModelState.IsValid)
@@ -76,6 +78,7 @@ namespace TasteGuide.Controllers
         }
 
         // GET: Reviews/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Reviews == null)
@@ -98,6 +101,7 @@ namespace TasteGuide.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Content,AppUserId,RestaurantId")] Review review)
         {
             if (id != review.Id)
@@ -131,6 +135,7 @@ namespace TasteGuide.Controllers
         }
 
         // GET: Reviews/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Reviews == null)
@@ -152,6 +157,7 @@ namespace TasteGuide.Controllers
 
         // POST: Reviews/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

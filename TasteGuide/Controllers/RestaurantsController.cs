@@ -90,6 +90,7 @@ namespace TasteGuide.Controllers
 
         // GET: Restaurants/Edit/5
         [Authorize(Roles = "Administrator")]
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Restaurants == null)
@@ -110,6 +111,7 @@ namespace TasteGuide.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImageFile")] Restaurant restaurant)
         {
@@ -143,6 +145,7 @@ namespace TasteGuide.Controllers
 
         // GET: Restaurants/Delete/5
         [Authorize(Roles = "Administrator")]
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Restaurants == null)
@@ -164,6 +167,7 @@ namespace TasteGuide.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Restaurants == null)
