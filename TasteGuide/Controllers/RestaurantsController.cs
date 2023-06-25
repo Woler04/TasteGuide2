@@ -65,6 +65,7 @@ namespace TasteGuide.Controllers
         // GET: Restaurants/Create
         //Reqires login that must be some kind of authorization security 
         [Authorize]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
